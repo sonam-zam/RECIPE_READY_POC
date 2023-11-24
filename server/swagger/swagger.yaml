@@ -1,0 +1,157 @@
+openapi: 3.0.0
+info:
+  title: Simple Recipe Generator - ML
+  description: Chef's recipe generation API using machine learning
+  contact:
+    email: mariadona8019@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/MARIADONA8019/recepe-generator-ML/1.0.0
+  description: SwaggerHub API Auto Mocking
+tags:
+- name: admins
+  description: Secured Admin-only calls
+- name: developers
+  description: Operations available to regular developers
+paths:
+  /recipe:
+    get:
+      tags:
+      - developers
+      summary: searches for existing recipes and lists them
+      description: |
+        By passing in the appropriate options, you can search for
+        available recipes in the system
+      operationId: search_recipes
+      parameters:
+      - name: searchString
+        in: query
+        description: pass the search string for looking up recipes
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Recipe'
+                x-content-type: application/json
+        "400":
+          description: bad input parameter
+      x-openapi-router-controller: server.controllers.developers_controller
+    put:
+      tags:
+      - admins
+      summary: Modify a recipe and save it back to the system
+      description: "Loads an existing recipe, change it and save it back in the system"
+      operationId: update_recipe
+      requestBody:
+        description: Updated recipe body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Recipe'
+      responses:
+        "200":
+          description: item updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recipe'
+        "400":
+          description: "invalid input, object invalid"
+      x-openapi-router-controller: server.controllers.admins_controller
+    post:
+      tags:
+      - admins
+      summary: Generates a recipe and adds it to the system
+      description: Generate a recipe using HuggingFace and add it to the system
+      operationId: add_recipe
+      requestBody:
+        description: Ingredients to generate recipe from
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+                example: macaroni
+      responses:
+        "201":
+          description: item created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recipe'
+        "400":
+          description: "invalid input, object invalid"
+        "409":
+          description: an existing item already exists
+      x-openapi-router-controller: server.controllers.admins_controller
+    delete:
+      tags:
+      - admins
+      summary: Delete an existing recipe from the system
+      description: Deletes an existing recipe from the system using id
+      operationId: delete_recipe
+      parameters:
+      - name: recipeId
+        in: query
+        description: Recipe id to be deleted
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: item updated
+        "404":
+          description: not found
+      x-openapi-router-controller: server.controllers.admins_controller
+components:
+  schemas:
+    Recipe:
+      required:
+      - id
+      - title
+      - directions
+      - ingredients
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: d290f1ee-6c54-4b01-90e6-d701748f0851
+        title:
+          type: string
+          example: Hidden Valley Ranch Oyster Crackers
+        directions:
+          type: array
+          items:
+            type: string
+            example: Combine salad dressing mix and oil.
+        ingredients:
+          type: array
+          items:
+            type: string
+            example: 12 to 16 oz. plain oyster crackers.
+      example:
+        id: d290f1ee-6c54-4b01-90e6-d701748f0851
+        title: Hidden Valley Ranch Oyster Crackers
+        directions:
+        - Combine salad dressing mix and oil.
+        - Combine salad dressing mix and oil.
+        ingredients:
+        - 12 to 16 oz. plain oyster crackers.
+        - 12 to 16 oz. plain oyster crackers.
+
