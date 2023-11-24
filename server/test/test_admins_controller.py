@@ -21,7 +21,7 @@ class TestAdminsController(BaseTestCase):
             '/MARIADONA8019/recepe-generator-ML/1.0.0/recipe',
             method='POST',
             data=json.dumps(body),
-            content_type='application/json')
+            content_type='application/config')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -63,7 +63,7 @@ class TestAdminsController(BaseTestCase):
             '/MARIADONA8019/recepe-generator-ML/1.0.0/recipe',
             method='PUT',
             data=json.dumps(body),
-            content_type='application/json')
+            content_type='application/config')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 

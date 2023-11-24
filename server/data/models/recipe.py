@@ -1,14 +1,12 @@
 # coding: utf-8
 
 from __future__ import absolute_import
-from datetime import date, datetime  # noqa: F401
 
+from datetime import date, datetime  # noqa: F401
 from typing import List, Dict  # noqa: F401
 
-from server.data.models.base_model_ import Model
 from server import util
-
-import uuid
+from server.data.models.base_model_ import Model
 
 
 class Recipe(Model):
@@ -17,7 +15,7 @@ class Recipe(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, id: str = uuid.uuid4().__str__(), title: str = None, directions: List[str] = None,
+    def __init__(self, id: str = None, title: str = None, directions: List[str] = None,
                  ingredients: List[str] = None):  # noqa: E501
         """Recipe - a model defined in Swagger
 

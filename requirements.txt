@@ -10,3 +10,4 @@ six ~= 1.16.0
 flask~=3.0.0
 botocore~=1.32.6
 requests~=2.31.0
+starlette~=0.32.0.post1

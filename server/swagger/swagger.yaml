@@ -9,32 +9,40 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   version: 1.0.0
 servers:
-- url: https://virtserver.swaggerhub.com/MARIADONA8019/recepe-generator-ML/1.0.0
-  description: SwaggerHub API Auto Mocking
+  - url: https://virtserver.swaggerhub.com/MARIADONA8019/recepe-generator-ML/1.0.0
+    description: SwaggerHub API Auto Mocking
 tags:
-- name: admins
-  description: Secured Admin-only calls
-- name: developers
-  description: Operations available to regular developers
+  - name: admins
+    description: Secured Admin-only calls
+  - name: developers
+    description: Operations available to regular developers
 paths:
   /recipe:
     get:
       tags:
-      - developers
-      summary: searches for existing recipes and lists them
+        - developers
+      summary: Fetch a specific recipe by the composite key
       description: |
-        By passing in the appropriate options, you can search for
-        available recipes in the system
-      operationId: search_recipes
+        By passing in the composite keys, you can fetch the
+        recipe, if available, from the system
+      operationId: get_recipe
       parameters:
-      - name: searchString
-        in: query
-        description: pass the search string for looking up recipes
-        required: true
-        style: form
-        explode: true
-        schema:
-          type: string
+        - name: recipeId
+          in: query
+          description: Recipe id to be retrieved
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: title
+          in: query
+          description: Recipe title to be retrieved
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: string
       responses:
         "200":
           description: search results matching criteria
@@ -44,13 +52,15 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Recipe'
-                x-content-type: application/json
+                x-content-type: application/config
         "400":
           description: bad input parameter
+        "404":
+          description: not found
       x-openapi-router-controller: server.controllers.developers_controller
     put:
       tags:
-      - admins
+        - admins
       summary: Modify a recipe and save it back to the system
       description: "Loads an existing recipe, change it and save it back in the system"
       operationId: update_recipe
@@ -72,7 +82,7 @@ paths:
       x-openapi-router-controller: server.controllers.admins_controller
     post:
       tags:
-      - admins
+        - admins
       summary: Generates a recipe and adds it to the system
       description: Generate a recipe using HuggingFace and add it to the system
       operationId: add_recipe
@@ -99,19 +109,27 @@ paths:
       x-openapi-router-controller: server.controllers.admins_controller
     delete:
       tags:
-      - admins
+        - admins
       summary: Delete an existing recipe from the system
       description: Deletes an existing recipe from the system using id
       operationId: delete_recipe
       parameters:
-      - name: recipeId
-        in: query
-        description: Recipe id to be deleted
-        required: true
-        style: form
-        explode: true
-        schema:
-          type: string
+        - name: recipeId
+          in: query
+          description: Recipe id to be deleted
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: title
+          in: query
+          description: Recipe title to be deleted
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: string
       responses:
         "200":
           description: item updated
@@ -122,10 +140,10 @@ components:
   schemas:
     Recipe:
       required:
-      - id
-      - title
-      - directions
-      - ingredients
+        - id
+        - title
+        - directions
+        - ingredients
       type: object
       properties:
         id:
@@ -149,9 +167,9 @@ components:
         id: d290f1ee-6c54-4b01-90e6-d701748f0851
         title: Hidden Valley Ranch Oyster Crackers
         directions:
-        - Combine salad dressing mix and oil.
-        - Combine salad dressing mix and oil.
+          - Combine salad dressing mix and oil.
+          - Combine salad dressing mix and oil.
         ingredients:
-        - 12 to 16 oz. plain oyster crackers.
-        - 12 to 16 oz. plain oyster crackers.
+          - 12 to 16 oz. plain oyster crackers.
+          - 12 to 16 oz. plain oyster crackers.
 

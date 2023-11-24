@@ -1,3 +1,5 @@
+import uuid
+
 from transformers import FlaxAutoModelForSeq2SeqLM
 from transformers import AutoTokenizer
 
@@ -85,7 +87,7 @@ class HuggingFace(object):
 
         for text in generated:
             sections = text.split("\n")
-            recipe = Recipe()
+            recipe = Recipe(uuid.uuid4().__str__())
 
             for section in sections:
                 section = section.strip()

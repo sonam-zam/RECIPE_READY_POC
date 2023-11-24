@@ -14,7 +14,7 @@ class Model(object):
     swagger_types = {}
 
     # attributeMap: The key is attribute name and the
-    # value is json key in definition.
+    # value is config key in definition.
     attribute_map = {}
 
     @classmethod

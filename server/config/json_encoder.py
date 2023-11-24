@@ -1,10 +1,11 @@
-import json
+from json import JSONEncoder
+
 import six
 
 from server.data.models.recipe import Recipe
 
 
-class JSONEncoder(json.JSONEncoder):
+class CustomJSONEncoder(JSONEncoder):
     include_nulls = False
 
     def default(self, o):
@@ -17,4 +18,4 @@ class JSONEncoder(json.JSONEncoder):
                 attr = o.attribute_map[attr]
                 dikt[attr] = value
             return dikt
-        return json.JSONEncoder.default(self, o)
+        return JSONEncoder.default(self, o)
