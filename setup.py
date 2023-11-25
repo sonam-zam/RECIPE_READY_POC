@@ -28,7 +28,7 @@ setup(
     package_data={'': ['swagger/swagger.yaml']},
     include_package_data=True,
     entry_points={
-        'console_scripts': ['server=server.__main__:main']},
+        'console_scripts': ['run=server.main']},
     long_description="""\
     Chef&#x27;s recipe generation API using machine learning
     """
