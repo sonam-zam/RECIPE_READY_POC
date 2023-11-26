@@ -1,6 +1,6 @@
 from logging import Logger
 
-from boto3.dynamodb.conditions import Attr, Key
+from boto3.dynamodb.conditions import Attr
 from botocore.exceptions import ClientError
 
 from server.data.repositories.base_repository_ import BaseRepository
@@ -37,10 +37,11 @@ class RecipeRepository(BaseRepository):
             else:
                 raise NotFoundException()
 
-    def scan_recipe(self, query_string):
+    def search_recipe(self, query_string):
         recipes = []
         scan_kwargs = {
-            "FilterExpression": Attr('directions').contains(query_string) or Attr('ingredients').contains(query_string)
+            "FilterExpression": Attr('title').contains(query_string) or Attr('directions').contains(
+                query_string) or Attr('ingredients').contains(query_string)
         }
 
         try:
@@ -52,7 +53,7 @@ class RecipeRepository(BaseRepository):
                 response = self.recipe_table.scan(**scan_kwargs)
                 recipes.extend(response.get("Items", []))
                 start_key = response.get("LastEvaluatedKey", None)
-                done = start_key in None
+                done = start_key is None
         except ClientError as err:
             self.logger.error(
                 "Couldn't scan recipes for query %s. Here's why: %s: %s",

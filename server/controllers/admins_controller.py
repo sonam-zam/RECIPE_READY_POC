@@ -53,3 +53,15 @@ def update_recipe(body=None):  # noqa: E501
     :rtype: Recipe
     """
     return recipe_repository.update_recipe(Recipe.from_dict(body))
+
+
+def search_recipe(query_string):  # noqa: E501
+    """searches for existing recipes and lists them
+
+    By passing in a keyword, you can search for available recipes in the system  # noqa: E501
+
+    :param query_string: Keyword to scan for
+
+    :rtype: List[Recipe]
+    """
+    return recipe_repository.search_recipe(query_string)

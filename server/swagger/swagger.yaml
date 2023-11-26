@@ -136,6 +136,39 @@ paths:
         "404":
           description: not found
       x-openapi-router-controller: server.controllers.admins_controller
+  /recipe/search:
+    get:
+      tags:
+      - admins
+      summary: Search for a recipe containing a keyword
+      description: |
+        By passing in a query string, you can fetch the
+        recipes containing the keyword, if any, from the system
+      operationId: search_recipe
+      parameters:
+      - name: queryString
+        in: query
+        description: Keyword to be scanned for
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Recipe'
+                x-content-type: application/json
+        "400":
+          description: bad input parameter
+        "404":
+          description: not found
+      x-openapi-router-controller: server.controllers.admins_controller
 components:
   schemas:
     Recipe:
