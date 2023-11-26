@@ -1,0 +1,170 @@
+{
+	"info": {
+		"_postman_id": "466cd408-f355-4180-a311-10d215a944fa",
+		"name": "recipe-generator",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1164166"
+	},
+	"item": [
+		{
+			"name": "developer",
+			"item": [
+				{
+					"name": "GetRecipe",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{ip}}/MARIADONA8019/recepe-generator-ML/1.0.0/recipe?recipeId=033a908d-bc5e-4042-a83e-9fe02700df9a&title=Mom s mac n cheese",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"path": [
+								"MARIADONA8019",
+								"recepe-generator-ML",
+								"1.0.0",
+								"recipe"
+							],
+							"query": [
+								{
+									"key": "recipeId",
+									"value": "033a908d-bc5e-4042-a83e-9fe02700df9a"
+								},
+								{
+									"key": "title",
+									"value": "Mom s mac n cheese"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "UpdateRecipe",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ingredients\": [\n        \"1 lb hot dog\",\n        \"Provolone cheese\",\n        \"12 slices bacon, cooked and crumbled\",\n        \"6 slices multigrain bread\",\n        \"Pickled ginger\"\n    ],\n    \"id\": \"f8dbf5e8-a366-4cb2-8d92-dfb01575e27h\",\n    \"title\": \"Hot dog pizzas\",\n    \"directions\": [\n        \"Cut each hot dog in half lengthwise.\",\n        \"Stuff with a slice of cheese and a piece of bacon.\",\n        \"Wrap each hot dog in a slice of bread and place on a cookie sheet.\",\n        \"Bake at 350 degrees for 5 8 minutes until bread is lightly browned.\",\n        \"Top with pickled ginger and serve warm.\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{ip}}/MARIADONA8019/recepe-generator-ML/1.0.0/recipe",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"path": [
+								"MARIADONA8019",
+								"recepe-generator-ML",
+								"1.0.0",
+								"recipe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateRecipe",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    \"macaroni, butter, salt, bacon, milk, flour, pepper, cream corn\",\n    \"provolone cheese, bacon, bread, ginger\"\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{ip}}/MARIADONA8019/recepe-generator-ML/1.0.0/recipe",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"path": [
+								"MARIADONA8019",
+								"recepe-generator-ML",
+								"1.0.0",
+								"recipe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteRecipe",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://{{ip}}/MARIADONA8019/recepe-generator-ML/1.0.0/recipe?recipeId=f8dbf5e8-a366-4cb2-8d92-dfb01575e27c&title=Hot dog pizza",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"path": [
+								"MARIADONA8019",
+								"recepe-generator-ML",
+								"1.0.0",
+								"recipe"
+							],
+							"query": [
+								{
+									"key": "recipeId",
+									"value": "f8dbf5e8-a366-4cb2-8d92-dfb01575e27c"
+								},
+								{
+									"key": "title",
+									"value": "Hot dog pizza"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SearchRecipe",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{ip}}/MARIADONA8019/recepe-generator-ML/1.0.0/recipe/search?queryString=mac",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"path": [
+								"MARIADONA8019",
+								"recepe-generator-ML",
+								"1.0.0",
+								"recipe",
+								"search"
+							],
+							"query": [
+								{
+									"key": "queryString",
+									"value": "mac"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
