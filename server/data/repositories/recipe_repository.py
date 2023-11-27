@@ -113,7 +113,10 @@ class RecipeRepository(BaseRepository):
                 )
                 raise
         else:
-            return response["Item"]
+            if "Attributes" in response:
+                return response["Attributes"]
+            else:
+                raise NotFoundException()
 
     def delete_recipe(self, recipe_id, title):
         try:
