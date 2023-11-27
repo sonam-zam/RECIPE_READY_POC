@@ -55,6 +55,14 @@ def update_recipe(body=None):  # noqa: E501
     return recipe_repository.update_recipe(Recipe.from_dict(body))
 
 
+def get_all_recipes():
+    """Get all the saved recipes from the system
+
+    :return: List of recipes
+    """
+    return recipe_repository.get_all_recipes()
+
+
 def search_recipe(query_string):  # noqa: E501
     """searches for existing recipes and lists them
 

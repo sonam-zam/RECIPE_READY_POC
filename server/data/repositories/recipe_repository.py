@@ -37,6 +37,24 @@ class RecipeRepository(BaseRepository):
             else:
                 raise NotFoundException()
 
+    def get_all_recipes(self):
+        try:
+            response = self.recipe_table.scan()
+            recipes = response["Items"]
+
+            while 'LastEvaluatedKey' in response:
+                response = self.recipe_table.scan(ExclusiveStartKey=response['LastEvaluatedKey'])
+                recipes.extend(response["Items"])
+        except ClientError as err:
+            self.logger.error(
+                "Couldn't fetch all recipes. Here's why: %s: %s",
+                err.response["Error"]["Code"],
+                err.response["Error"]["Message"]
+            )
+            raise
+        else:
+            return recipes
+
     def search_recipe(self, query_string):
         recipes = []
         scan_kwargs = {

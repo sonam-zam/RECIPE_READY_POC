@@ -15,7 +15,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://{{ip}}/MARIADONA8019/recepe-generator-ML/1.0.0/recipe?recipeId=033a908d-bc5e-4042-a83e-9fe02700df9a&title=Mom s mac n cheese",
+							"raw": "http://{{ip}}/MARIADONA8019/recepe-generator-ML/1.0.0/recipe?recipeId=b7baa3f6-2903-40d2-a340-65c24bd2a26c&title=Creamed spinach",
 							"protocol": "http",
 							"host": [
 								"{{ip}}"
@@ -29,11 +29,11 @@
 							"query": [
 								{
 									"key": "recipeId",
-									"value": "033a908d-bc5e-4042-a83e-9fe02700df9a"
+									"value": "b7baa3f6-2903-40d2-a340-65c24bd2a26c"
 								},
 								{
 									"key": "title",
-									"value": "Mom s mac n cheese"
+									"value": "Creamed spinach"
 								}
 							]
 						}
@@ -52,7 +52,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"ingredients\": [\n        \"1 lb hot dog\",\n        \"Provolone cheese\",\n        \"12 slices bacon, cooked and crumbled\",\n        \"6 slices multigrain bread\",\n        \"Pickled ginger\"\n    ],\n    \"id\": \"f8dbf5e8-a366-4cb2-8d92-dfb01575e27h\",\n    \"title\": \"Hot dog pizzas\",\n    \"directions\": [\n        \"Cut each hot dog in half lengthwise.\",\n        \"Stuff with a slice of cheese and a piece of bacon.\",\n        \"Wrap each hot dog in a slice of bread and place on a cookie sheet.\",\n        \"Bake at 350 degrees for 5 8 minutes until bread is lightly browned.\",\n        \"Top with pickled ginger and serve warm.\"\n    ]\n}",
+							"raw": "{\n    \"id\": \"77d9c2fd-e9b5-45aa-b0ba-234603410b42\",\n    \"title\": \"Creamed spinach\",\n    \"directions\": [\n        \"Heat butter and milk just until hot.\",\n        \"Do not let boil.\",\n        \"Blend in flour.\",\n        \"Remove from heat.\",\n        \"Add remaining ingredients and beat vigorously until smooth.\",\n        \"Cool.\",\n        \"Chill for 3 hours.\"\n    ],\n    \"ingredients\": [\n        \"1 c. chopped spinach, well drained\",\n        \"2 tbsp. butter or margarine\",\n        \"1/2 tsp. salt\",\n        \"1 c. milk\",\n        \"1 tbsp. flour\",\n        \"Dash of pepper\",\n        \"2 eggs\"\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -82,7 +82,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "[\n    \"macaroni, butter, salt, bacon, milk, flour, pepper, cream corn\",\n    \"provolone cheese, bacon, bread, ginger\"\n]",
+							"raw": "[\n    \"butter, salt, milk, flour, pepper, eggs\"\n]",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -111,7 +111,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://{{ip}}/MARIADONA8019/recepe-generator-ML/1.0.0/recipe?recipeId=f8dbf5e8-a366-4cb2-8d92-dfb01575e27c&title=Hot dog pizza",
+							"raw": "http://{{ip}}/MARIADONA8019/recepe-generator-ML/1.0.0/recipe?recipeId=d57d93d3-cc2c-4c23-b528-cc5d2e5d0fe1&title=Creamed spinach",
 							"protocol": "http",
 							"host": [
 								"{{ip}}"
@@ -125,11 +125,11 @@
 							"query": [
 								{
 									"key": "recipeId",
-									"value": "f8dbf5e8-a366-4cb2-8d92-dfb01575e27c"
+									"value": "d57d93d3-cc2c-4c23-b528-cc5d2e5d0fe1"
 								},
 								{
 									"key": "title",
-									"value": "Hot dog pizza"
+									"value": "Creamed spinach"
 								}
 							]
 						}
@@ -142,7 +142,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://{{ip}}/MARIADONA8019/recepe-generator-ML/1.0.0/recipe/search?queryString=mac",
+							"raw": "http://{{ip}}/MARIADONA8019/recepe-generator-ML/1.0.0/recipe/search?queryString=Pickled ginger",
 							"protocol": "http",
 							"host": [
 								"{{ip}}"
@@ -157,8 +157,30 @@
 							"query": [
 								{
 									"key": "queryString",
-									"value": "mac"
+									"value": "Pickled ginger"
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllRecipes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{ip}}/MARIADONA8019/recepe-generator-ML/1.0.0/recipe/all",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"path": [
+								"MARIADONA8019",
+								"recepe-generator-ML",
+								"1.0.0",
+								"recipe",
+								"all"
 							]
 						}
 					},
